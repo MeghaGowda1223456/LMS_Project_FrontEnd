@@ -1,8 +1,8 @@
-import serviceUtil from "../../index";
+import serviceUtil from "../index";
 
-const mentorBatchGetAll = () => {
+const mentorBatchGetAll = (payload) => {
   return serviceUtil
-    .get("")
+    .get(`lms/getbatchbyempid?empId=${payload}`)
     .then((res) => {
       const data = res && res.data;
       return { data };

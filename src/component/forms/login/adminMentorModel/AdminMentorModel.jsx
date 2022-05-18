@@ -41,8 +41,8 @@ function AdminMentorModel({
   const modalValue = "add";
   const handleSubmit = async () => {
     const payload = {
-      empId: defaultFormData.mentorName,
-      reason: defaultFormData.employeeId,
+      mentorName: defaultFormData.mentorName,
+      empId: defaultFormData.employeeId,
       emailId: defaultFormData.email,
       skills: defaultFormData.skills,
     };
@@ -73,7 +73,7 @@ function AdminMentorModel({
         onCloseIconClick={() => setOpenMentor(false)}
         onC
       >
-        <Box className="p-5 pt-4 overflowY-scroll h-550">
+        <Box className="p-5 pt-4">
           <p className="mb-0 txt-gray">Mentor Name</p>
           <div className="mb-4">
             <InputComponent

@@ -40,7 +40,7 @@ const MENTROR_BATCH_HEADER = [
     id: "col6",
     nummeric: false,
     disablePadding: false,
-    label: "Start Date",
+    label: "End Date",
     sort: false,
     width: 100,
   },

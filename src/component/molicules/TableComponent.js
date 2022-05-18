@@ -134,6 +134,7 @@ function EnhancedTableHead(props) {
     headCells,
     checkBoxSelected,
     showCheckbox,
+    actions,
   } = props;
   const classes = useStyles();
 
@@ -379,15 +380,17 @@ function EnhancedTableHead(props) {
             </TableCell>
           );
         })}
-        <TableCell
-          sx={{ borderBottom: 0, fontWeight: "bold" }}
-          align="left"
-          padding="none"
-          style={{ width: 150 }}
-          className="fs-12 fw-600"
-        >
-          Actions
-        </TableCell>
+        {actions && (
+          <TableCell
+            sx={{ borderBottom: 0, fontWeight: "bold" }}
+            align="left"
+            padding="none"
+            style={{ width: 150 }}
+            className="fs-12 fw-600"
+          >
+            Actions
+          </TableCell>
+        )}
       </TableRow>
     </TableHead>
   );
@@ -410,6 +413,7 @@ export default function TableComponent({
   showEditAndDelete = true,
   handleApprove = () => {},
   handleReject = () => {},
+  actions = true,
 }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("col1");
@@ -543,6 +547,7 @@ export default function TableComponent({
             tablerow={tablerow}
             checkBoxSelected={setSelected}
             showCheckbox={showCheckbox}
+            actions={actions}
             // handleApprove = () => {},
             // handleReject = () => {},
           />
@@ -615,76 +620,76 @@ export default function TableComponent({
                         </TableCell>
                       );
                     })}
-                    <TableCell
-                      sx={{ borderBottom: 0, pl: 0 }}
-                      disabled={checked}
-                    >
-                      {/* {hoverRow === index && ( */}
-                      {showEditAndDelete ? (
-                        <>
-                          <IconButton
-                            sx={{ mr: 2, p: 0 }}
-                            disabled={checked}
-                            onClick={() => {
-                              editIconClick(row.col1);
-                            }}
-                          >
-                            <Tooltip title="Edit">
-                              <EditOutlinedIcon
-                                color="primary"
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  opacity: checked && "0.5",
-                                }}
-                              />
-                            </Tooltip>
-                          </IconButton>
-                          <IconButton
-                            sx={{ mx: 2, p: 0 }}
-                            disabled={checked}
-                            onClick={() => deleteIconClick(row.col1)}
-                          >
-                            <Tooltip title="Delete">
-                              <DeleteOutlineOutlinedIcon
-                                // color="primary"
-                                className={classes.deleteIcon}
-                                style={{
-                                  opacity: checked && "0.5",
-                                }}
-                              />
-                            </Tooltip>
-                          </IconButton>
-                        </>
-                      ) : (
-                        <div className="d-flux">
-                          <ButtonComponent
-                            size="small"
-                            variant="outlined"
-                            style={{
-                              backgroundColor: "#00951E1A",
-                              color: "#00811A",
-                              padding: "2px",
-                              margin: "5px",
-                            }}
-                            label="Approve"
-                            onClick={() => handleApprove(row.col1)}
-                          />
-                          <ButtonComponent
-                            size="small"
-                            variant="outlined"
-                            style={{
-                              backgroundColor: "#B2000C80",
-                              color: "#CE000E",
-                              margin: "5px",
-                            }}
-                            label="Reject"
-                            onClick={() => handleReject(row.col1)}
-                          />
-                        </div>
-                      )}
-                      {/* )} */}
-                    </TableCell>
+                    {actions && (
+                      <TableCell
+                        sx={{ borderBottom: 0, pl: 0 }}
+                        disabled={checked}
+                      >
+                        {showEditAndDelete ? (
+                          <>
+                            <IconButton
+                              sx={{ mr: 2, p: 0 }}
+                              disabled={checked}
+                              onClick={() => {
+                                editIconClick(row.col1);
+                              }}
+                            >
+                              <Tooltip title="Edit">
+                                <EditOutlinedIcon
+                                  color="primary"
+                                  style={{
+                                    fontSize: "20px",
+                                    cursor: "pointer",
+                                    opacity: checked && "0.5",
+                                  }}
+                                />
+                              </Tooltip>
+                            </IconButton>
+                            <IconButton
+                              sx={{ mx: 2, p: 0 }}
+                              disabled={checked}
+                              onClick={() => deleteIconClick(row.col1)}
+                            >
+                              <Tooltip title="Delete">
+                                <DeleteOutlineOutlinedIcon
+                                  // color="primary"
+                                  className={classes.deleteIcon}
+                                  style={{
+                                    opacity: checked && "0.5",
+                                  }}
+                                />
+                              </Tooltip>
+                            </IconButton>
+                          </>
+                        ) : (
+                          <div className="d-flux">
+                            <ButtonComponent
+                              size="small"
+                              variant="outlined"
+                              style={{
+                                backgroundColor: "#00951E1A",
+                                color: "#00811A",
+                                padding: "2px",
+                                margin: "5px",
+                              }}
+                              label="Approve"
+                              onClick={() => handleApprove(row.col1)}
+                            />
+                            <ButtonComponent
+                              size="small"
+                              variant="outlined"
+                              style={{
+                                backgroundColor: "#B2000C80",
+                                color: "#CE000E",
+                                margin: "5px",
+                              }}
+                              label="Reject"
+                              onClick={() => handleReject(row.col1)}
+                            />
+                          </div>
+                        )}
+                      </TableCell>
+                    )}
                   </TableRow>
                 );
               })}

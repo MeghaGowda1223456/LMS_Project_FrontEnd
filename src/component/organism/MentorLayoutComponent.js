@@ -16,6 +16,7 @@ import { Box } from "@mui/material";
 import MentorRoute from "../routes/MentorRoute";
 import MentorSidebar from "./MentorSideBar";
 import LogiTechno from "../../assets/login/technologo.svg";
+import { messageService } from "../../services/rxjsServices";
 
 const { Header, Content, Sider } = Layout;
 
@@ -49,6 +50,9 @@ function MentorLayoutComponent() {
             size="default"
             placeholder="Search Mentor / Employee"
             prefix={<SearchOutlined />}
+            onChange={(e) => {
+              messageService.sendMessage(e.target.value);
+            }}
           />
         </Box>
 

@@ -14,6 +14,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ButtonComponent from "../atom/ButtonComponent";
 import { Box } from "@mui/material";
 import LogiTechno from "../../assets/login/technologo.svg";
+import { messageService } from "../../services/rxjsServices";
 
 const { Header, Content, Sider } = Layout;
 
@@ -47,6 +48,9 @@ function LayoutComponent() {
             size="default"
             placeholder="Search Mentor / Employee"
             prefix={<SearchOutlined />}
+            onChange={(e) => {
+              messageService.sendMessage(e.target.value);
+            }}
           />
         </Box>
         <Box style={{ float: "right", marginLeft: "250px" }}>

@@ -14,6 +14,9 @@ import {
   batchGetAll,
   batchDelete,
 } from "../../../services/utils/batch/BarchServices";
+import { messageService } from "../../../services/rxjsServices";
+import { mentorBatchGetAll } from "../../../services/mentorBatch/MentorBatchServices";
+import WarningIcons from "../../molicules/WarningIcon";
 
 function MentorBatch() {
   const [openBatch, setOpenBatch] = useState(false);
@@ -61,7 +64,12 @@ function MentorBatch() {
   };
 
   const getTableData = async () => {
-    const { data, errRes } = await batchGetAll();
+    let tok = localStorage.getItem("token");
+    let dec = JSON.parse(atob(tok.split(".")[1]));
+    console.log();
+
+    const { data, errRes } = await mentorBatchGetAll(dec.empId);
+    console.log(data.data);
     setBatchData(data.data);
     let arrayOfRows = [];
     data &&
@@ -69,22 +77,24 @@ function MentorBatch() {
         arrayOfRows.push({
           col1: index + 1,
           // col1: item.number,
-          col2: item.id,
+          col2: item.batchId,
           col3: item.batchName,
-          col4: item.mentorName,
-          col5: item.technologies.map((ele) => (
+          // col4: item.mentorName,
+          col4: item.technologies.map((ele) => (
             <Chip
-              label={ele.tech}
+              label={ele.technologyName}
               variant="outlined"
               color="primary"
               sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
             />
           )),
-          col6: item.startDate,
-          col7: item.endDate,
-          col8: item.status,
+          col5: item.startDate,
+          col6: item.endDate,
+          col7: item.status,
+          col8: <WarningIcons />,
         });
       });
+
     setRows(arrayOfRows);
   };
 
@@ -112,7 +122,7 @@ function MentorBatch() {
         }}
         className="row"
       >
-        <Box className="col-6">
+        <Box className="col-8">
           <Typography color={"#FAA81D"}>Batch list</Typography>
         </Box>
         <Box className="col-4 d-flex">
@@ -120,20 +130,9 @@ function MentorBatch() {
             size="default"
             placeholder="Search"
             prefix={<SearchOutlined />}
-          />
-        </Box>
-        <Box className="col-2">
-          <ButtonComponent
-            label="New Batch"
-            muiProps="orange"
-            fullwidth
-            size="small"
-            onClick={() => {
-              setOpenBatch(true);
+            onChange={(e) => {
+              messageService.sendMessage(e.target.value);
             }}
-            showIcon={true}
-            iconOrintation="start"
-            iconName="add"
           />
         </Box>
       </Toolbar>
@@ -145,6 +144,7 @@ function MentorBatch() {
           editIconClick={(id) => {
             setOpenBatch(true);
           }}
+          actions={false}
         />
       </div>
       {openBatch && (

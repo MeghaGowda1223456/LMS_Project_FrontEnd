@@ -319,3 +319,27 @@ p {
     transform: rotate(360deg);
   }
 }
+
+/* pi chart css */
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#legend li span {
+  width: 36px;
+  height: 12px;
+  display: inline-block;
+  margin: 0 5px 8px 0;
+  vertical-align: -9.4px;
+}
+#legend ul {
+  list-style: none;
+  font: 12px Verdana;
+  white-space: nowrap;
+}
+
+/* .css-i4bv87-MuiSvgIcon-root {
+  color: #faa81d;
+} */

@@ -108,6 +108,8 @@ function BatchModal({
       modalValue === "add"
         ? await batchSubmit(payload)
         : await batchSubmit(payload);
+
+    console.log(data);
     if (data) {
       await getTableData();
     } else if (errRes) {
@@ -115,6 +117,7 @@ function BatchModal({
     } else {
       console.log("Something went wrong");
     }
+    setOpenBatch(false);
   };
 
   return (
