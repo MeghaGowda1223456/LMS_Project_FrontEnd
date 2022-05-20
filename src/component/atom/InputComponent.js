@@ -24,6 +24,7 @@ function InputComponent({
         status={status}
         readOnly={readOnly}
         type={type}
+        className={className}
       />
     </div>
   );

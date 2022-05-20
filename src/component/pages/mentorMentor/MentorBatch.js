@@ -18,6 +18,8 @@ import { messageService } from "../../../services/rxjsServices";
 import { mentorBatchGetAll } from "../../../services/mentorBatch/MentorBatchServices";
 import WarningIcons from "../../molicules/WarningIcon";
 
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 function MentorBatch() {
   const [openBatch, setOpenBatch] = useState(false);
   const [batchData, setBatchData] = useState([]);
@@ -92,6 +94,35 @@ function MentorBatch() {
           col6: item.endDate,
           col7: item.status,
           col8: <WarningIcons />,
+          col9: (
+            // #086288
+            <button
+              className="attenbutton"
+              style={{ height: "30px" }}
+              onClick={() => {
+                setOpenBatch(true);
+              }}
+            >
+              Attendance
+            </button>
+          ),
+          col10: (
+            <button
+              style={{
+                backgroundColor: "transparent",
+                borderStyle: "none",
+              }}
+              onClick={() => {}}
+            >
+              <ArrowForwardIosIcon
+                color="#0000"
+                sx={{
+                  color: "gray",
+                  width: "20px",
+                }}
+              />
+            </button>
+          ),
         });
       });
 

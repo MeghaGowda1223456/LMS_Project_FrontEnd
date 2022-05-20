@@ -343,3 +343,17 @@ p {
 /* .css-i4bv87-MuiSvgIcon-root {
   color: #faa81d;
 } */
+
+/* attendance Button */
+
+.attenbutton {
+  color: #086288;
+  border-style: none;
+  background-color: transparent;
+}
+.attenbutton:hover {
+  background-color: #086288;
+  color: white;
+  border: 2px solid #086288;
+  border-radius: "50px";
+}

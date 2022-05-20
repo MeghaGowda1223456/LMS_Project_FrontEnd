@@ -60,6 +60,22 @@ const MENTROR_BATCH_HEADER = [
     sort: false,
     width: 100,
   },
+  {
+    id: "col9",
+    nummeric: false,
+    disablePadding: false,
+    label: "",
+    sort: false,
+    width: 100,
+  },
+  {
+    id: "col10",
+    nummeric: false,
+    disablePadding: false,
+    label: "",
+    sort: false,
+    width: 100,
+  },
 ];
 
 export default MENTROR_BATCH_HEADER;

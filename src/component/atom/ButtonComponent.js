@@ -28,6 +28,7 @@ const ButtonComponent = ({
   iconName = "",
   disabled = false,
   onClick = () => {},
+  
 }) => {
   const classes = useStyles();
   const getIcon = () => {

@@ -357,9 +357,10 @@ function PrimaryEmployee({
       <div className="row justify-content-center ">
         <div className="col-5">
           <div className="d-flex justify-content-between">
-            <div className="m-2">
+            <div className="m-2 ">
               <p className="mb-0">Employee Id</p>
               <InputComponent
+                style={{ width: "263px" }}
                 status={error.empName && "error"}
                 value={defaultFormData.empId}
                 onChange={(e) => {
@@ -374,6 +375,7 @@ function PrimaryEmployee({
             <div className="m-2">
               <p className="mb-0">Employee Name</p>
               <InputComponent
+                style={{ width: "263px" }}
                 status={error.empName && "error"}
                 value={defaultFormData.empName}
                 onChange={(e) => {
@@ -391,6 +393,7 @@ function PrimaryEmployee({
             <div className="col-5 m-2">
               <p className="mb-0">Date of Joining</p>
               <DatePickerComponent
+                style={{ width: "260px" }}
                 value={defaultFormData.doj}
                 onChange={(date, dateString) => {
                   console.log(dateString, "dateString");
@@ -404,6 +407,7 @@ function PrimaryEmployee({
             <div className="m-2 col-5">
               <p className="mb-0">Date of Birth</p>
               <DatePickerComponent
+                style={{ marginLeft: "-25px", width: "260px" }}
                 value={defaultFormData.dob}
                 onChange={(date, dateString) => {
                   setDefaultFormData({ ...defaultFormData, dob: dateString });
@@ -413,7 +417,7 @@ function PrimaryEmployee({
             </div>
           </div>
           <div className="d-flex justify-content-between">
-            <div className="m-2">
+            <div className="m-2" style={{ width: "263px" }}>
               <p className="mb-0">E-mail ID</p>
               <InputComponent
                 status={error.email && "error"}
@@ -432,6 +436,7 @@ function PrimaryEmployee({
             <div className="m-2">
               <p className="mb-0">Blood Group</p>
               <InputComponent
+                style={{ width: "263px" }}
                 status={error.bloodGroup && "error"}
                 value={defaultFormData.bloodGroup}
                 onChange={(e) => {
@@ -447,11 +452,14 @@ function PrimaryEmployee({
             </div>
           </div>
           <div className="row d-flex justify-content-between">
-            <div className="m-2 col-5">
+            <div className="m-2 col-5" style={{ width: "283px" }}>
               <p className="mb-0">Designation</p>
               <SimpleDropdown />
             </div>
-            <div className="m-2 col-5">
+            <div
+              className="m-2 col-5"
+              style={{ width: "286px", marginLeft: "-500px" }}
+            >
               <p className="mb-0">Gender</p>
               <SimpleDropdown />
             </div>
