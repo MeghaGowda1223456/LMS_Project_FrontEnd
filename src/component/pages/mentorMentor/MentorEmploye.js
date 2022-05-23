@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 // import SearchIcon from "@mui/icons-material/Search";
-
+import ButtonComponent from "../../atom/ButtonComponent";
 import { Chip, Toolbar, Typography } from "@mui/material";
 import "../../../style/button.scss";
 import { Input } from "antd";
@@ -15,14 +15,8 @@ import {
   batchDelete,
 } from "../../../services/utils/batch/BarchServices";
 import { messageService } from "../../../services/rxjsServices";
-import { mentorBatchGetAll } from "../../../services/mentorBatch/MentorBatchServices";
-import WarningIcons from "../../molicules/WarningIcon";
 
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import AttendanceModel from "../../forms/attendance/AttendanceModel";
-import { useNavigate } from "react-router-dom";
-
-function MentorBatch() {
+function MentorEmploye() {
   const [openBatch, setOpenBatch] = useState(false);
   const [batchData, setBatchData] = useState([]);
   const [rows, setRows] = useState([]);
@@ -33,19 +27,19 @@ function MentorBatch() {
   const [batchId, setBatchId] = useState("");
   const [defaultFormData, setDefaultFormData] = useState({
     name: "",
+    batchId: "",
     mentorName: "",
-    technologies: "",
+    technologies: [],
     startDate: "",
     startDateString: "",
     endDate: "",
     endDateString: "",
+    status: "",
   });
 
   useEffect(() => {
     getTableData();
   }, []);
-
-  let history=useNavigate()
 
   const hanldeEditClick = (id) => {
     let data;
@@ -55,27 +49,21 @@ function MentorBatch() {
           data = item;
         }
       });
-    setPreviousFormData(data);
     console.log("first", data);
     setBatchId(data.id);
     setDefaultFormData({
-      name: data.name,
+      name: data.batchName,
       mentorName: data.mentorName,
       // technologies: data.technologies,
       startDate: data.startDate,
-      endDate: data.blog_image_url,
+      endDate: data.endDate,
     });
     hanldeEditClick();
     setModalValue("edit");
   };
 
   const getTableData = async () => {
-    let tok = localStorage.getItem("token");
-    let dec = JSON.parse(atob(tok.split(".")[1]));
-    console.log();
-
-    const { data, errRes } = await mentorBatchGetAll(dec.empId);
-    console.log(data.data);
+    const { data, errRes } = await batchGetAll();
     setBatchData(data.data);
     let arrayOfRows = [];
     data &&
@@ -85,8 +73,8 @@ function MentorBatch() {
           // col1: item.number,
           col2: item.batchId,
           col3: item.batchName,
-          // col4: item.mentorName,
-          col4: item.technologies.map((ele) => (
+          col4: item.mentorName,
+          col5: item.technologies.map((ele) => (
             <Chip
               label={ele.technologyName}
               variant="outlined"
@@ -94,58 +82,22 @@ function MentorBatch() {
               sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
             />
           )),
-          col5: item.startDate,
-          col6: item.endDate,
-          col7: item.status,
-          col8: <WarningIcons />,
-          col9: (
-            // #086288
-            <button
-              className="attenbutton"
-              style={{ height: "30px" }}
-              onClick={() => {
-                setOpenBatch(true);
-              }}
-            >
-              Attendance
-            </button>
-          ),
-          col10: (
-            <button
-              style={{
-                backgroundColor: "transparent",
-                borderStyle: "none",
-              }}
-              onClick={() => {
-                history("/mentorEmployee")
-              }}
-            >
-              <ArrowForwardIosIcon
-                color="#0000"
-                sx={{
-                  color: "gray",
-                  width: "20px",
-                }}
-              />
-            </button>
-          ),
+          col6: item.startDate,
+          col7: item.endDate,
+          col8: item.status,
         });
       });
-
     setRows(arrayOfRows);
   };
 
   const deleteItem = async (id) => {
     let batchId = "";
     batchData.map((item, index) => {
-      if (index === id) {
-        batchId = item.id;
+      if (index + 1 === id) {
+        batchId = item.batchId;
       }
     });
-    console.log("type of", batchId);
     const { data, errRes } = await batchDelete(batchId);
-    console.log(data);
-    console.log(errRes);
     if (data) {
       getTableData();
     }
@@ -159,7 +111,7 @@ function MentorBatch() {
         }}
         className="row"
       >
-        <Box className="col-8">
+        <Box className="col-6">
           <Typography color={"#FAA81D"}>Batch list</Typography>
         </Box>
         <Box className="col-4 d-flex">
@@ -172,20 +124,33 @@ function MentorBatch() {
             }}
           />
         </Box>
+        <Box className="col-2">
+          <ButtonComponent
+            label="New Batch"
+            muiProps="orange"
+            fullwidth
+            size="small"
+            onClick={() => {
+              setOpenBatch(true);
+            }}
+            showIcon={true}
+            iconOrintation="start"
+            iconName="add"
+          />
+        </Box>
       </Toolbar>
       <div classNamw="m-2">
         <TableComponent
           tablerow={rows}
-          headCells={CONSTANTS.MENTROR_BATCH_HEADER}
+          headCells={CONSTANTS.BATCH_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
           editIconClick={(id) => {
             setOpenBatch(true);
           }}
-          actions={false}
         />
       </div>
       {openBatch && (
-        <AttendanceModel
+        <BatchModal
           getTableData={getTableData}
           openBatch={openBatch}
           setOpenBatch={setOpenBatch}
@@ -197,4 +162,4 @@ function MentorBatch() {
   );
 }
 
-export default MentorBatch;
+export default MentorEmploye;

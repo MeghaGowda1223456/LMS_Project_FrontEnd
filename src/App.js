@@ -20,6 +20,9 @@ import MentorLayoutComponent from "./component/organism/MentorLayoutComponent";
 import { Warning } from "@mui/icons-material";
 import WarningIcon from "./component/molicules/WarningIcon";
 import WarningIcons from "./component/molicules/WarningIcon";
+import SwitchComponent from "./component/atom/SwitchComponent";
+import AttendanceModel from "./component/forms/attendance/AttendanceModel";
+import MentorEmploye from "./component/pages/mentorMentor/MentorEmploye";
 function App() {
   return (
     <div>
@@ -27,6 +30,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
+
             <Route element={<ProtectedRoute />}>
               <Route path="/*" />
             </Route>
@@ -55,6 +59,8 @@ function App() {
         <DonutPiChart />
       </div> */}
       {/* <WarningIcons /> */}
+      {/* <AttendanceModel/> */}
+      {/* <MentorEmploye /> */}
     </div>
   );
 }
