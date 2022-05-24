@@ -59,6 +59,40 @@ function AdminMentor() {
     setRows(arrayOfRows);
   };
 
+  const hanldeEditClick = (id) => {
+    let data;
+    console.log(id);
+    mentorData &&
+      mentorData.map((item, index) => {
+        if (index + 1 === id) {
+          data = item;
+        }
+      });
+
+    setDefaultFormData({
+      // header: data.blog_heading,
+      // category: data.category_name,
+      // categoryID: data.category_id,
+      // bodyObj: EditorState.createWithContent(
+      //   ContentState.createFromBlockArray(
+      //     htmlToDraft(data.blog_body).contentBlocks
+      //   )
+      // ),
+      // image: data.blog_image_url,
+      // description: data.blog_desc,
+      // body: data.blog_body,
+
+      mentorName: data.mentorName,
+      employeeId: data.empId,
+      email: data.empId,
+      skills: data.skills.map((val) => {
+        return val.sName;
+      }),
+    });
+    // setModalValue("edit");
+    setOpenMentor(true);
+  };
+
   const deleteItem = async (id) => {
     let empId = "";
     mentorData.map((item, index) => {
@@ -114,6 +148,9 @@ function AdminMentor() {
           tablerow={rows}
           headCells={CONSTANTS.ADMIN_MENTOR_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
+          editIconClick={(id) => {
+            hanldeEditClick(id);
+          }}
         />
       </div>
       {openMentor && (

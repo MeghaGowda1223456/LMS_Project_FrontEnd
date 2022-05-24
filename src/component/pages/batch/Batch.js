@@ -27,14 +27,14 @@ function Batch() {
   const [batchId, setBatchId] = useState("");
   const [defaultFormData, setDefaultFormData] = useState({
     name: "",
-    batchId:"",
+    batchId: "",
     mentorName: "",
     technologies: [],
     startDate: "",
     startDateString: "",
     endDate: "",
     endDateString: "",
-    status:""
+    status: "",
   });
 
   useEffect(() => {
@@ -49,16 +49,20 @@ function Batch() {
           data = item;
         }
       });
-    console.log("first", data);
-    setBatchId(data.id);
+    console.log(batchData, "sudisuyfiuety");
+    console.log(data.batchId);
+
+    setBatchId(data.batchId);
     setDefaultFormData({
       name: data.batchName,
       mentorName: data.mentorName,
-      // technologies: data.technologies,
+      technologies: data.technologies.map((val) => {
+        return val.sName;
+      }),
       startDate: data.startDate,
       endDate: data.endDate,
     });
-    hanldeEditClick();
+    setOpenBatch(true);
     setModalValue("edit");
   };
 
@@ -144,9 +148,10 @@ function Batch() {
           tablerow={rows}
           headCells={CONSTANTS.BATCH_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
-          editIconClick={(id) => {
-            setOpenBatch(true);
-          }}
+          // editIconClick={(id) => {
+          //   setOpenBatch(true);
+          // }}
+          editIconClick={(id) => hanldeEditClick(id)}
         />
       </div>
       {openBatch && (
