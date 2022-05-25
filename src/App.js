@@ -4,6 +4,7 @@ import LayoutComponent from "./component/organism/LayoutComponent";
 import "./style/dateComponent.scss";
 import "./style/color.scss";
 import "./style/font.scss";
+import "./style/width.scss";
 import Login from "./component/pages/login/Login";
 import TextAreaComponent from "./component/atom/TextAreaComponent";
 import ProtectedRoute from "./component/organism/ProtectedRoute";
@@ -23,6 +24,7 @@ import WarningIcons from "./component/molicules/WarningIcon";
 import SwitchComponent from "./component/atom/SwitchComponent";
 import AttendanceModel from "./component/forms/attendance/AttendanceModel";
 import MentorEmploye from "./component/pages/mentorMentor/MentorEmploye";
+import DownloderXlsx from "./component/molicules/downloder-xlsx/DownloderXlsx";
 function App() {
   return (
     <div>
@@ -36,7 +38,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-    </div>
+      </div>
       {/* <LayoutComponent /> */}
       {/* <DetailsModal /> */}
       {/* </BrowserRouter>
@@ -58,9 +60,7 @@ function App() {
       {/* <div className="m-5">
         <DonutPiChart />
       </div> */}
-      {/* <WarningIcons /> */}
-      {/* <AttendanceModel/> */}
-      {/* <MentorEmploye /> */}
+      {/* <DownloderXlsx/> */}
     </div>
   );
 }

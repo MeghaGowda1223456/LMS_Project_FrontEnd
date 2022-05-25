@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-function BarChart() {
+function BarChart1() {
   const [chartOptions, setChartOptions] = useState({});
   let labels = [2022, 2021, 2020, 2019, 2018, 2017, 2016];
   let datasets = [
@@ -72,4 +72,4 @@ function BarChart() {
   );
 }
 
-export default BarChart;
+export default BarChart1;

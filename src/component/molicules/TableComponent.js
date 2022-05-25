@@ -593,7 +593,10 @@ export default function TableComponent({
                             borderBottom: 0,
                             wordBreak: "break-all",
                             px: 1,
-                            display: headCells[i].hidden && "none",
+                            display:
+                              headCells[i]?.hidden && headCells[i].hidden
+                                ? "none"
+                                : "",
                           }}
                           align="left"
                           padding="none"

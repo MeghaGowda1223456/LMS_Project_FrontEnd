@@ -15,6 +15,19 @@ const mentorBatchGetAll = (payload) => {
 
 const mentorAttendanceGetAll = (payload) => {
   return serviceUtil
+    .get(`lmsuser/getemployeeattendance?batchId=${payload}`)
+    .then((res) => {
+      const data = res && res.data;
+      return { data };
+    })
+    .catch((err) => {
+      const errRes = err && err.response.data;
+      return { errRes };
+    });
+};
+
+const mentorEmployeeGetAll = (payload) => {
+  return serviceUtil
     .get(`lmsuser/getemployeebybatchid?batchId=${payload}`)
     .then((res) => {
       const data = res && res.data;
@@ -57,4 +70,5 @@ export {
   mentorBatchSubmit,
   mentorBatchDelete,
   mentorAttendanceGetAll,
+  mentorEmployeeGetAll,
 };

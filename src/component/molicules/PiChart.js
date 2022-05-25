@@ -106,7 +106,7 @@ import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 Chart.register(ArcElement, Tooltip, Legend);
 
-const PiChart = () => {
+const PiChart = ({ style = {} }) => {
   const data = {
     labels: ["Excellent", "Good", "Above Average", "Average", "Below Average"],
     datasets: [
@@ -129,13 +129,14 @@ const PiChart = () => {
   return (
     <div
       style={{
-        width: "250px",
+        width: "340px",
         height: "100px",
         display: "flex",
         alignItems: "center",
       }}
     >
       <Pie
+        style={style}
         data={data}
         options={{
           responsive: true,

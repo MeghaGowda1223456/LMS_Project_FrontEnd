@@ -15,6 +15,8 @@ import {
   batchDelete,
 } from "../../../services/utils/batch/BarchServices";
 import { messageService } from "../../../services/rxjsServices";
+import MentorEmployeeModel from "../../forms/mentorEmployeeModel/MentorEmployeeModel";
+import { mentorEmployeeGetAll } from "../../../services/mentorBatch/MentorBatchServices";
 
 function MentorEmploye() {
   const [openBatch, setOpenBatch] = useState(false);
@@ -63,7 +65,12 @@ function MentorEmploye() {
   };
 
   const getTableData = async () => {
-    const { data, errRes } = await batchGetAll();
+    let tok = localStorage.getItem("token");
+    let dec = JSON.parse(atob(tok.split(".")[1]));
+    console.log(dec);
+
+    const { data, errRes } = await mentorEmployeeGetAll(dec.empId);
+    console.log(data.data);
     setBatchData(data.data);
     let arrayOfRows = [];
     data &&
@@ -84,7 +91,6 @@ function MentorEmploye() {
           )),
           col6: item.startDate,
           col7: item.endDate,
-          col8: item.status,
         });
       });
     setRows(arrayOfRows);
@@ -126,7 +132,7 @@ function MentorEmploye() {
         </Box>
         <Box className="col-2">
           <ButtonComponent
-            label="New Batch"
+            label="Create Mock"
             muiProps="orange"
             fullwidth
             size="small"
@@ -142,15 +148,16 @@ function MentorEmploye() {
       <div classNamw="m-2">
         <TableComponent
           tablerow={rows}
-          headCells={CONSTANTS.BATCH_HEADER}
+          headCells={CONSTANTS.MENTROR_EMPLOYEE_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
           editIconClick={(id) => {
             setOpenBatch(true);
           }}
+          actions={false}
         />
       </div>
       {openBatch && (
-        <BatchModal
+        <MentorEmployeeModel
           getTableData={getTableData}
           openBatch={openBatch}
           setOpenBatch={setOpenBatch}

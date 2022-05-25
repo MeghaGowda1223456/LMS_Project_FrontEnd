@@ -22,8 +22,8 @@ const DonutPiChart = () => {
   return (
     <div
       style={{
-        width: "270px",
-        height: "100px",
+        width: "200px",
+        height: "90px",
         display: "flex",
         alignItems: "center",
       }}
