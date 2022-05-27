@@ -15,16 +15,17 @@ import {
   batchDelete,
 } from "../../../services/utils/batch/BarchServices";
 import { messageService } from "../../../services/rxjsServices";
+import moment from "moment";
 
 function Batch() {
   const [openBatch, setOpenBatch] = useState(false);
   const [batchData, setBatchData] = useState([]);
   const [rows, setRows] = useState([]);
-  const [selected, setSelected] = useState([]);
-  const [deleteData, setDeleteData] = useState("");
-  const [previousFormData, setPreviousFormData] = useState([]);
-  const [modalValue, setModalValue] = useState("add");
   const [batchId, setBatchId] = useState("");
+  const [mentor, setMentor] = useState({});
+  const [modalValue, setModalValue] = useState("add");
+  const [status, setStatus] = useState({});
+
   const [defaultFormData, setDefaultFormData] = useState({
     name: "",
     batchId: "",
@@ -49,19 +50,23 @@ function Batch() {
           data = item;
         }
       });
-    console.log(batchData, "sudisuyfiuety");
-    console.log(data.batchId);
+    console.log(data);
 
     setBatchId(data.batchId);
     setDefaultFormData({
       name: data.batchName,
-      mentorName: data.mentorName,
+      batchId: data.batchId,
       technologies: data.technologies.map((val) => {
-        return val.sName;
+        return val.technologyName;
       }),
-      startDate: data.startDate,
-      endDate: data.endDate,
+      startDate: moment(data.startDate),
+      endDate: moment(data.endDate),
     });
+    setMentor({
+      value: data.mentorName,
+      id: data.empId,
+    });
+    setStatus({ value: data.status });
     setOpenBatch(true);
     setModalValue("edit");
   };
@@ -161,6 +166,10 @@ function Batch() {
           setOpenBatch={setOpenBatch}
           defaultFormData={defaultFormData}
           setDefaultFormData={setDefaultFormData}
+          setMentor={setMentor}
+          mentor={mentor}
+          status={status}
+          setStatus={setStatus}
         />
       )}
     </div>

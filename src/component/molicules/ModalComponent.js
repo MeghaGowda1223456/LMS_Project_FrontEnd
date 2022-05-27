@@ -60,9 +60,7 @@ const ModalComponent = ({
             </div>
           </div>
         )}
-        <div
-          className={`${minHeightClassName} overflowY-scroll overflowX-hidden`}
-        >
+        <div className={`${minHeightClassName}  overflowX-hidden`}>
           {children}
         </div>
         {showFooter && (

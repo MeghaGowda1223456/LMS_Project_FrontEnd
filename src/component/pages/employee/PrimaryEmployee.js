@@ -353,14 +353,20 @@ function PrimaryEmployee({
   };
 
   return (
-    <div className="m-5">
-      <div className="row justify-content-center ">
-        <div className="col-5">
-          <div className="d-flex justify-content-between">
-            <div className="m-2 ">
-              <p className="mb-0">Employee Id</p>
-              <InputComponent
-                style={{ width: "263px" }}
+    <div
+      class="modal-body col-md-6 "
+      style={{ marginLeft: "auto", marginRight: "auto" }}
+    >
+      <form>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Employee ID: </label>
+              <input
+                type="text"
+                class="form-control"
+                name="employee_id"
+                required
                 status={error.empName && "error"}
                 value={defaultFormData.empId}
                 onChange={(e) => {
@@ -372,10 +378,15 @@ function PrimaryEmployee({
                 }}
               />
             </div>
-            <div className="m-2">
-              <p className="mb-0">Employee Name</p>
-              <InputComponent
-                style={{ width: "263px" }}
+          </div>
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Employee Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="employee_id"
+                required
                 status={error.empName && "error"}
                 value={defaultFormData.empName}
                 onChange={(e) => {
@@ -386,12 +397,13 @@ function PrimaryEmployee({
                   });
                 }}
               />
-              {error.empName && <p className="mb-0">Employee Name required</p>}
             </div>
           </div>
-          <div className=" row d-flex justify-content-between">
-            <div className="col-5 m-2">
-              <p className="mb-0">Date of Joining</p>
+        </div>
+        <div className="row mt-4">
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Date of joining:</label>
               <DatePickerComponent
                 style={{ width: "260px" }}
                 value={defaultFormData.doj}
@@ -400,26 +412,17 @@ function PrimaryEmployee({
                   setDefaultFormData({ ...defaultFormData, doj: dateString });
                 }}
               />
-              {error.doj && (
-                <p className="mb-0 text-danger">Date of Joining Required</p>
-              )}
-            </div>
-            <div className="m-2 col-5">
-              <p className="mb-0">Date of Birth</p>
-              <DatePickerComponent
-                style={{ marginLeft: "-25px", width: "260px" }}
-                value={defaultFormData.dob}
-                onChange={(date, dateString) => {
-                  setDefaultFormData({ ...defaultFormData, dob: dateString });
-                }}
-              />
-              {error.dob && <p className="mb-0">Date of Birth Required</p>}
             </div>
           </div>
-          <div className="d-flex justify-content-between">
-            <div className="m-2" style={{ width: "263px" }}>
-              <p className="mb-0">E-mail ID</p>
-              <InputComponent
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Email ID:</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                required
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
                 status={error.email && "error"}
                 value={defaultFormData.email}
                 onChange={(e) => {
@@ -429,14 +432,32 @@ function PrimaryEmployee({
                   });
                 }}
               />
-              {error.email && (
-                <p className="mb-0 text-danger">E-mail ID Required</p>
-              )}
             </div>
-            <div className="m-2">
-              <p className="mb-0">Blood Group</p>
-              <InputComponent
-                style={{ width: "263px" }}
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Date of birth:</label>
+              <DatePickerComponent />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Gender:</label>
+              <SimpleDropdown />
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Blood group:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="blood_group"
+                required
                 status={error.bloodGroup && "error"}
                 value={defaultFormData.bloodGroup}
                 onChange={(e) => {
@@ -446,65 +467,40 @@ function PrimaryEmployee({
                   });
                 }}
               />
-              {error.bloodGroup && (
-                <p className="mb-0, text-danger">Blood Group Required</p>
-              )}
             </div>
           </div>
-          <div className="row d-flex justify-content-between">
-            <div className="m-2 col-5" style={{ width: "283px" }}>
-              <p className="mb-0">Designation</p>
-              <SimpleDropdown />
-            </div>
-            <div
-              className="m-2 col-5"
-              style={{ width: "286px", marginLeft: "-500px" }}
-            >
-              <p className="mb-0">Gender</p>
+          <div class="col-6">
+            <div class="form-group has-label">
+              <label class="control-label">Designation:</label>
               <SimpleDropdown />
             </div>
           </div>
-          <div className=" d-flex justify-content-between">
-            <div className="m-2 col-5">
-              <p className="mb-0">Nationality</p>
-              <SimpleDropdown />
-            </div>
-            <div className="m-2 col-5">
-              <p className="mb-0">Employee Status</p>
-              <SimpleDropdown />
-            </div>
-          </div>
-          <div className="d-flex justify-content-center pb-5 mb-5">
-            <div
-              style={{ width: "700px" }}
-              className="d-flex justify-content-between "
-            >
-              <div>
-                <ButtonComponent
-                  label="Previous"
-                  style={{
-                    backgroundColor: "#086288",
-                    color: "#FFFFFF",
-                    Fontfamily: "Open Sans, Semibold",
-                  }}
-                  size="default"
-                  onClick={() => handlePreviousClick()}
-                />
-              </div>
-              <div>
-                <ButtonComponent
-                  label="Next"
-                  style={{
-                    backgroundColor: "#086288",
-                    color: "#FFFFFF",
-                    Fontfamily: "Open Sans, Semibold",
-                  }}
-                  size="default"
-                  onClick={() => handleNext()}
-                />
-              </div>
-            </div>
-          </div>
+        </div>
+      </form>
+      <div class="row mt-4">
+        <div class="col-2">
+          <ButtonComponent
+            label="Previous"
+            style={{
+              backgroundColor: "#086288",
+              color: "#FFFFFF",
+              Fontfamily: "Open Sans, Semibold",
+            }}
+            size="default"
+            // onClick={() => handlePreviousClick()}
+          />
+        </div>
+        <div class=" col-2" style={{ marginLeft: "auto" }}>
+          <ButtonComponent
+            label="Next"
+            style={{
+              backgroundColor: "#086288",
+              color: "#FFFFFF",
+              Fontfamily: "Open Sans, Semibold",
+            }}
+            size="default"
+            onClick={() => handleNext()}
+          />
         </div>
       </div>
     </div>

@@ -90,6 +90,12 @@ function MentorLayoutComponent() {
                 <Breadcrumb.Item>Batch name </Breadcrumb.Item>{" "}
                 <Breadcrumb.Item>Employee list</Breadcrumb.Item>
               </>
+            ) : activeIndex === "/mentoremployeechart" ? (
+              <>
+                <Breadcrumb.Item>Batch name </Breadcrumb.Item>{" "}
+                <Breadcrumb.Item>Employee list</Breadcrumb.Item>
+                <Breadcrumb.Item>Employee</Breadcrumb.Item>
+              </>
             ) : (
               ""
             )}

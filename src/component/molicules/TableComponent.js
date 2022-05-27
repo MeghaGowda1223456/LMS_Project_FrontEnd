@@ -626,13 +626,13 @@ export default function TableComponent({
                     {actions && (
                       <TableCell
                         sx={{ borderBottom: 0, pl: 0 }}
-                        disabled={checked}
+                        // disabled={checked}
                       >
                         {showEditAndDelete ? (
                           <>
                             <IconButton
                               sx={{ mr: 2, p: 0 }}
-                              disabled={checked}
+                              // disabled={checked}
                               onClick={() => {
                                 editIconClick(row.col1);
                               }}
@@ -643,23 +643,25 @@ export default function TableComponent({
                                   style={{
                                     fontSize: "20px",
                                     cursor: "pointer",
-                                    opacity: checked && "0.5",
+                                    // opacity: checked && "0.5",
                                   }}
                                 />
                               </Tooltip>
                             </IconButton>
                             <IconButton
                               sx={{ mx: 2, p: 0 }}
-                              disabled={checked}
+                              // disabled={checked}
                               onClick={() => deleteIconClick(row.col1)}
                             >
                               <Tooltip title="Delete">
                                 <DeleteOutlineOutlinedIcon
                                   // color="primary"
                                   className={classes.deleteIcon}
-                                  style={{
-                                    opacity: checked && "0.5",
-                                  }}
+                                  style={
+                                    {
+                                      // opacity: checked && "0.5",
+                                    }
+                                  }
                                 />
                               </Tooltip>
                             </IconButton>

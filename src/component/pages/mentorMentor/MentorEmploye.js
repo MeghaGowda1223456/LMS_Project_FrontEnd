@@ -17,6 +17,10 @@ import {
 import { messageService } from "../../../services/rxjsServices";
 import MentorEmployeeModel from "../../forms/mentorEmployeeModel/MentorEmployeeModel";
 import { mentorEmployeeGetAll } from "../../../services/mentorBatch/MentorBatchServices";
+import WarningIcons from "../../molicules/WarningIcon";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useNavigate } from "react-router-dom";
+import MockModel from "../../forms/mockModel/MockModel";
 
 function MentorEmploye() {
   const [openBatch, setOpenBatch] = useState(false);
@@ -38,11 +42,14 @@ function MentorEmploye() {
     endDateString: "",
     status: "",
   });
-
+  const [status1, setStatus1] = useState({});
+  const [techno, setTechno] = useState({});
+  const [feedbackData,setFeedbackData]=useState({})
   useEffect(() => {
     getTableData();
   }, []);
 
+  let history = useNavigate();
   const hanldeEditClick = (id) => {
     let data;
     batchData &&
@@ -65,11 +72,9 @@ function MentorEmploye() {
   };
 
   const getTableData = async () => {
-    let tok = localStorage.getItem("token");
-    let dec = JSON.parse(atob(tok.split(".")[1]));
-    console.log(dec);
+    let batchId = localStorage.getItem("batchid");
 
-    const { data, errRes } = await mentorEmployeeGetAll(dec.empId);
+    const { data, errRes } = await mentorEmployeeGetAll(batchId);
     console.log(data.data);
     setBatchData(data.data);
     let arrayOfRows = [];
@@ -78,19 +83,42 @@ function MentorEmploye() {
         arrayOfRows.push({
           col1: index + 1,
           // col1: item.number,
-          col2: item.batchId,
-          col3: item.batchName,
-          col4: item.mentorName,
-          col5: item.technologies.map((ele) => (
-            <Chip
-              label={ele.technologyName}
-              variant="outlined"
-              color="primary"
-              sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
-            />
-          )),
-          col6: item.startDate,
-          col7: item.endDate,
+          col2: item.empId,
+          col3: item.empName,
+          col4: <WarningIcons />,
+          col5: "22/45",
+          col6: item.empStatus,
+          col7: (
+            // #086288
+            <button
+              className="attenbutton"
+              style={{ height: "30px" }}
+              onClick={() => {
+                setOpenBatch(true);
+              }}
+            >
+              Give Rating
+            </button>
+          ),
+          col8: (
+            <button
+              style={{
+                backgroundColor: "transparent",
+                borderStyle: "none",
+              }}
+              onClick={() => {
+                history("/mentoremployeechart");
+              }}
+            >
+              <ArrowForwardIosIcon
+                color="#0000"
+                sx={{
+                  color: "gray",
+                  width: "20px",
+                }}
+              />
+            </button>
+          ),
         });
       });
     setRows(arrayOfRows);
@@ -150,19 +178,22 @@ function MentorEmploye() {
           tablerow={rows}
           headCells={CONSTANTS.MENTROR_EMPLOYEE_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
-          editIconClick={(id) => {
-            setOpenBatch(true);
-          }}
           actions={false}
         />
       </div>
       {openBatch && (
-        <MentorEmployeeModel
+        <MockModel
           getTableData={getTableData}
           openBatch={openBatch}
           setOpenBatch={setOpenBatch}
           defaultFormData={defaultFormData}
           setDefaultFormData={setDefaultFormData}
+          status={status1}
+          setStatus={setStatus1}
+          techno={techno}
+          setTechno={setTechno}
+          setFeedbackData={setFeedbackData}
+          feedbackData={feedbackData}
         />
       )}
     </div>

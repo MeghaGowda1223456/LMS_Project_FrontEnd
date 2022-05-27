@@ -18,6 +18,10 @@ function BatchModal({
   getTableData,
   setDefaultFormData,
   defaultFormData,
+  setMentor,
+  mentor,
+  setStatus,
+  status,
 }) {
   const [error, setError] = useState({
     name: false,
@@ -28,8 +32,6 @@ function BatchModal({
     endDate: false,
     endDateString: false,
   });
-  const [mentor, setMentor] = useState({});
-  const [status, setStatus] = useState({});
 
   useEffect(() => {
     getOptions();
@@ -231,7 +233,7 @@ function BatchModal({
             <DatePickerComponent
               value={defaultFormData.endDate}
               onChange={(date, dateString) => {
-                console.log(dateString);
+                console.log(date);
                 setDefaultFormData({
                   ...defaultFormData,
                   endDate: date,

@@ -15,7 +15,7 @@ const mentorBatchGetAll = (payload) => {
 
 const mentorAttendanceGetAll = (payload) => {
   return serviceUtil
-    .get(`lmsuser/getemployeeattendance?batchId=${payload}`)
+    .get(`lms/getemployeeattendance?batchId=${payload}`)
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -65,10 +65,38 @@ const mentorBatchDelete = (payload) => {
     });
 };
 
+const mentorResetPassword = (payload) => {
+  return serviceUtil
+    .put("lmsuser/resetpassword", payload)
+    .then((res) => {
+      const data = res && res.data;
+      return { data };
+    })
+    .catch((err) => {
+      const errRes = err && err.response.data;
+      return { errRes };
+    });
+};
+
+const mockRating = (payload) => {
+  return serviceUtil
+    .post("lms/mockrating", payload)
+    .then((res) => {
+      const data = res && res.data;
+      return { data };
+    })
+    .catch((err) => {
+      const errRes = err && err.response.data;
+      return { errRes };
+    });
+};
+
 export {
   mentorBatchGetAll,
   mentorBatchSubmit,
   mentorBatchDelete,
   mentorAttendanceGetAll,
   mentorEmployeeGetAll,
+  mentorResetPassword,
+  mockRating,
 };

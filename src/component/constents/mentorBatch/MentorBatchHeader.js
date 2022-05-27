@@ -58,7 +58,7 @@ const MENTROR_BATCH_HEADER = [
     disablePadding: false,
     label: "Batch Strength",
     sort: false,
-    width: 100,
+    width: 140,
   },
   {
     id: "col9",

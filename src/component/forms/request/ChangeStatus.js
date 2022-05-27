@@ -58,8 +58,9 @@ function ChangeStatus({ approve, setApprove, getTableData, defaultFormData }) {
         onCloseIconClick={() => {
           setApprove(false);
         }}
+        minHeightClassName="mnh-150"
       >
-        <div className="px-5 p-2 overflow Y-scroll h-550">
+        <div className="px-5 p-2">
           <div className="mb-2">
             <p className="mb-0">Employee Id</p>
             <InputComponent readOnly={true} value={defaultFormData.empId} />

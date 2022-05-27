@@ -37,6 +37,7 @@ function ReasonRejection({
         modalTitle="Reason for Rejection"
         modalWidth={400}
         showPreviousBtn={false}
+        minHeightClassName="mnh-100"
       >
         <div className="p-2 px-5" style={{ width: " 100% " }}>
           <p className="mb-0">Reason</p>

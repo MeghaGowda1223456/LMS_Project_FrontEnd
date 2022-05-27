@@ -25,6 +25,7 @@ import SwitchComponent from "./component/atom/SwitchComponent";
 import AttendanceModel from "./component/forms/attendance/AttendanceModel";
 import MentorEmploye from "./component/pages/mentorMentor/MentorEmploye";
 import DownloderXlsx from "./component/molicules/downloder-xlsx/DownloderXlsx";
+import LineChartComponent from "./component/molicules/LineChartComponent";
 function App() {
   return (
     <div>
@@ -61,6 +62,7 @@ function App() {
         <DonutPiChart />
       </div> */}
       {/* <DownloderXlsx/> */}
+      {/* <LineChartComponent/> */}
     </div>
   );
 }

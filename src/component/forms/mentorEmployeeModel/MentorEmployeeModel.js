@@ -21,15 +21,15 @@ function MentorEmployeeModel({
         // onSubmitBtnClick={handleSubmit}
         submitBtnText="Create"
         modalWidth={"450px"}
-        modalTitle={"Add new mentor"}
+        modalTitle={"Add Mock"}
         onCloseIconClick={() => setOpenBatch(false)}
         showPreviousBtn={false}
       >
         <Box className="p-5 pt-4">
-          <p className="mb-0 txt-gray">Batch ID</p>
+          {/* <p className="mb-0 txt-gray">Batch ID</p>
           <div className="mb-4">
             <SimpleDropdown />
-          </div>
+          </div> */}
 
           <div className="mb-4">
             <p className="mb-0 txt-gray">Mock No. </p>

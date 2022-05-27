@@ -22,10 +22,10 @@ function AttendanceModel({ setOpenBatch }) {
   }, []);
 
   const getTableData = async () => {
-    let tok = localStorage.getItem("token");
-    let dec = JSON.parse(atob(tok.split(".")[1]));
+    let tok = localStorage.getItem("batchid");
+    
 
-    const { data, errRes } = await mentorAttendanceGetAll(dec.batchId);
+    const { data, errRes } = await mentorAttendanceGetAll(tok);
     console.log(data);
     setBatchData(data.data);
     let arrayOfRows = [];
@@ -35,7 +35,7 @@ function AttendanceModel({ setOpenBatch }) {
           col1: index + 1,
           // col1: item.number,
           col2: item.empId,
-          col3: item.batchName,
+          col3: item.empName,
           // col4: item.mentorName,
           col4: <SwitchComponent />,
         });
@@ -47,7 +47,7 @@ function AttendanceModel({ setOpenBatch }) {
     <div>
       <ModalComponent
         // onSubmitBtnClick={handleSubmit}
-        minHeightClassName="vh-height"
+        // minHeightClassName="vh-height"
         modalWidth={"1000px"}
         submitBtnText="Submit"
         modalTitle={`Attendance for (${d.toLocaleDateString("de-DE", {
@@ -55,6 +55,7 @@ function AttendanceModel({ setOpenBatch }) {
         })})`}
         showPreviousBtn={false}
         onCloseIconClick={() => setOpenBatch(false)}
+        minHeightClassName="mnh-200"
       >
         <TableComponent
           headCells={CONSTANTS.ATTENDANCE_HEADER}

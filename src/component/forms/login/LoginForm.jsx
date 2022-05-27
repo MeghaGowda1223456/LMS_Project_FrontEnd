@@ -336,10 +336,22 @@ function LoginForm() {
     if (dataRes) {
       // dispatch(userAction(dataRes.header.token));
       let data = dataRes.data.data.token;
-      console.log(data);
+      console.log(dataRes, "datares");
       localStorage.setItem("token", data);
       localStorage.setItem("role", dataRes.data.data.role);
-      history("/batch");
+      localStorage.setItem("batchid", dataRes.data.data.batchId);
+      let bat = localStorage.getItem("batchid");
+
+      console.log(bat);
+      localStorage.setItem(
+        "passwordChanged",
+        dataRes.data.data.passwordChanged
+      );
+      if (dataRes.data.data.passwordChanged) {
+        history("/mentorDashboard");
+      } else {
+        history("/batch");
+      }
       setDefaultFormData({ ...defaultFormData, empId: "" });
       setDefaultFormData({ ...defaultFormData, password: "" });
     } else {

@@ -47,7 +47,7 @@ const BATCH_HEADER = [
     id: "col7",
     nummeric: false,
     disablePadding: false,
-    label: "Start Date",
+    label: "End Date",
     sort: false,
     width: 100,
   },
@@ -57,7 +57,7 @@ const BATCH_HEADER = [
     disablePadding: false,
     label: "Status",
     sort: false,
-    width: 100,
+    width: 180,
   },
 ];
 

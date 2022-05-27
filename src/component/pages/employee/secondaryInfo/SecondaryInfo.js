@@ -106,7 +106,7 @@ function SecondaryInfo({
             <div className="d-flex justify-content-between">
               <div className="m-2">
                 <p className="mb-0">PAN No.</p>
-                <InputComponent />
+                <InputComponent className="w-100" />
               </div>
               <div className="m-2">
                 <p className="mb-0">Aadhar No.</p>
